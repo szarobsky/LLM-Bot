@@ -93,6 +93,39 @@ client.on('messageCreate', async (message) => {
             message.reply('There was an error processing your request.');
         }
     }
+
+    //If the message starts with !activity, the bot will make an activity to respond to the question
+    if (message.content.startsWith('!activity')) {
+        console.log("task question asked");
+
+        //Get the question from the message
+        let question = "Please create a task/activity the user can take to answer the following question as if you are teaching a student, and only use text formatting. Also, do not end the message prompting another question: ";
+        question += message.content.replace('!ask', '').trim();
+        if (!question) {
+            return message.reply('Please provide a question.');
+        }
+
+        //Call the OpenAI API to get the response
+        try {
+            const response = await openai.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: [{"role": "user", "content": question}],
+            });
+            const reply = response.choices[0].message.content;
+            if (reply.length <= 2000) {
+                message.reply(reply);
+            } else {
+                //Split the reply into chunks to avoid the 2000 character limit
+                const chunks = reply.match(/[\s\S]{1,2000}/g); 
+                for (const chunk of chunks) {
+                    await message.reply(chunk);
+                }
+            }
+        } catch (error) {
+            console.error(error);
+            message.reply('There was an error processing your request.');
+        }
+    }
 });
 
 //Login to Discord with the bot token

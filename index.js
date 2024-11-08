@@ -22,7 +22,40 @@ client.on('messageCreate', async (message) => {
         console.log("question asked");
 
         //Get the question from the message
-        let question = "Please answer the following question/interact with the user as if you are teaching a student, and only use text formatting: ";
+        let question = "Please answer the following question/interact with the user as if you are teaching a student, and only use text formatting. Also, do not end the messsage prompting another question: ";
+        question += message.content.replace('!ask', '').trim();
+        if (!question) {
+            return message.reply('Please provide a question.');
+        }
+
+        //Call the OpenAI API to get the response
+        try {
+            const response = await openai.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: [{"role": "user", "content": question}],
+            });
+            const reply = response.choices[0].message.content;
+            if (reply.length <= 2000) {
+                message.reply(reply);
+            } else {
+                //Split the reply into chunks to avoid the 2000 character limit
+                const chunks = reply.match(/[\s\S]{1,2000}/g); 
+                for (const chunk of chunks) {
+                    await message.reply(chunk);
+                }
+            }
+        } catch (error) {
+            console.error(error);
+            message.reply('There was an error processing your request.');
+        }
+    }
+
+    //If the message starts with !flashcard, the bot will make flashcards to respond to the question
+    if (message.content.startsWith('!flashcard')) {
+        console.log("flashcard question asked");
+
+        //Get the question from the message
+        let question = "Please create flashcards to answer the following question/interact with the user as if you are teaching a student, and only use text formatting. Also, do not end the messsage prompting another question: ";
         question += message.content.replace('!ask', '').trim();
         if (!question) {
             return message.reply('Please provide a question.');

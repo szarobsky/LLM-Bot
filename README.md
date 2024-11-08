@@ -5,6 +5,12 @@ This project is a Discord bot that integrates with OpenAI's GPT-4 model to answe
 ## Adding Our Deployed Bot to Your Discord Server
 Click the following link, select your server, and approve the permissions to add the [Discord Bot](https://discord.com/oauth2/authorize?client_id=1290347853713248419&permissions=67584&integration_type=0&scope=bot).
 
+## Interacting with the Bot
+- !ask (your question): Answers the question in an educational manner
+- !activity (your question): Generates an activity related to the question
+- !flashcard (your topic): Creates flashcards for the topic
+- !examples (your topic): Generates examples for the topic
+- !mcq (your topic): Generates multiple-choice questions for the topic
 
 ## Prerequisites
 
@@ -39,10 +45,7 @@ Click the following link, select your server, and approve the permissions to add
     node index.js
     ```
 
-2. Invite the bot to your Discord server and use the `!ask` command followed by your question:
-    ```
-    !ask What is the capital of France?
-    ```
+2. Invite the bot to your Discord server and use the commands specified above to interact with it!
 
 ## Project Structure
 

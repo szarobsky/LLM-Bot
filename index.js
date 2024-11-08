@@ -22,7 +22,7 @@ client.on('messageCreate', async (message) => {
         console.log("question asked");
 
         //Get the question from the message
-        let question = "Please answer the following question/interact with the user as if you are teaching a student: ";
+        let question = "Please answer the following question/interact with the user as if you are teaching a student, and only use text formatting: ";
         question += message.content.replace('!ask', '').trim();
         if (!question) {
             return message.reply('Please provide a question.');

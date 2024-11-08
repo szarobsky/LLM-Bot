@@ -2,6 +2,10 @@
 
 This project is a Discord bot that integrates with OpenAI's GPT-4 model to answer questions asked in a Discord server.
 
+## Adding Our Deployed Bot to Your Discord Server
+Click the following link, select your server, and approve the permissions to add the [Discord Bot](https://discord.com/oauth2/authorize?client_id=1290347853713248419&permissions=67584&integration_type=0&scope=bot).
+
+
 ## Prerequisites
 
 - Node.js (v18.18.0)

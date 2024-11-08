@@ -2,10 +2,21 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const { OpenAI } = require('openai');
 require('dotenv').config();
+const express = require('express');
 
 //Create a new Discord client and OpenAI client
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 //When the bot is ready, log the bot's username
 client.on('ready', () => {

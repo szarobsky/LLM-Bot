@@ -40,7 +40,7 @@ client.on('messageCreate', async (message) => {
         if (!question) {
             return message.reply('Please provide a question.');
         }
-
+        
         //Call the OpenAI API to get the response
         try {
             const response = await openai.chat.completions.create({
@@ -167,7 +167,7 @@ client.on('messageCreate', async (message) => {
         console.log("mcq question asked");
 
         //Get the question from the message
-        let question = "Please generate multiple choice practice questions for the following topic as if you are teaching a student, and only use text formatting. Also, do not end the message prompting another question: ";
+        let question = "Please generate multiple choice practice questions for the following topic as if you are teaching a student, and only use text formatting. Include the answers for the questions at the very end. Also, do not end the message prompting another question: ";
         question += message.content.replace('!mcq', '').trim();
         if (!question) {
             return message.reply('Please provide a topic.');

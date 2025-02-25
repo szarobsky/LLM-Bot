@@ -32,6 +32,7 @@ client.on('messageCreate', async (message) => {
 
     //If the message starts with !ask, the bot will respond to the question
     if (message.content.startsWith('!ask')) {
+        message.channel.sendTyping();
         console.log("question asked");
 
         //Get the question from the message
@@ -66,6 +67,7 @@ client.on('messageCreate', async (message) => {
     //If the message starts with !flashcard, the bot will make flashcards about the requested topic.
     if (message.content.startsWith('!flashcard')) {
         console.log("flashcard question asked");
+        message.channel.sendTyping();
 
         //Get the question from the message
         let question = "Please create flashcards about the following topic as if you are teaching a student, and only use text formatting. Also, do not end the messsage prompting another question: ";
@@ -99,6 +101,7 @@ client.on('messageCreate', async (message) => {
     //If the message starts with !activity, the bot will make an activity to respond to the question
     if (message.content.startsWith('!activity')) {
         console.log("activity question asked");
+        message.channel.sendTyping();
 
         //Get the question from the message
         let question = "Please create a task/activity the user can take to answer the following question as if you are teaching a student, and only use text formatting. Also, do not end the message prompting another question: ";
@@ -132,6 +135,7 @@ client.on('messageCreate', async (message) => {
     //If the message starts with !examples, the bot will give examples of the referenced topic.
     if (message.content.startsWith('!examples')) {
         console.log("example question asked");
+        message.channel.sendTyping();
 
         //Get the question from the message
         let question = "Please give examples of the following topic as if you are teaching a student, and only use text formatting. Also, do not end the message prompting another question: ";
@@ -165,6 +169,7 @@ client.on('messageCreate', async (message) => {
     //If the message starts with !mcq, the bot will give examples of the referenced topic.
     if (message.content.startsWith('!mcq')) {
         console.log("mcq question asked");
+        message.channel.sendTyping();
 
         //Get the question from the message
         let question = "Please generate multiple choice practice questions for the following topic as if you are teaching a student, and only use text formatting. Include the answers for the questions at the very end. Also, do not end the message prompting another question: ";

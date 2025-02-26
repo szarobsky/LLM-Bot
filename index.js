@@ -105,6 +105,15 @@ client.on('messageCreate', async (message) => {
         return;
     }
 
+    //If the message starts with !options, the bot will respond with the available options
+    if (message.content.startsWith('!options')) {
+        message.channel.sendTyping();
+        console.log("options asked");
+        let reply = "Hello! I am available to help you with the following commands:\n- !ask (your question): Answers the question in an educational manner\n- !activity (your question): Generates an activity related to the question\n- !flashcard (your topic): Creates flashcards for the topic\n- !examples (your topic): Generates examples for the topic\n- !mcq (your topic): Generates multiple-choice questions for the topic\nFeel free to reply to any of my responses to ask more questions!";
+        message.reply(reply);
+        return;
+    }
+
     //If the message starts with !ask, the bot will respond to the question
     if (message.content.startsWith('!ask')) {
         message.channel.sendTyping();
